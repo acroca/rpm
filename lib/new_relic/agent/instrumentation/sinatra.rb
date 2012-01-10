@@ -39,7 +39,7 @@ module NewRelic
           # Go through each route and look for a match
           if routes = self.class.routes[@request.request_method]
             routes.detect do |pattern, keys, conditions, block|
-              if block_arg.equal? block
+              if @request.path.match(pattern)
                 name = pattern.source
               end
             end
